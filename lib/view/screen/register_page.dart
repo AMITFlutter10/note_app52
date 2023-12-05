@@ -178,14 +178,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           ElevatedButton(
                               onPressed: () async {
-                                //   await AuthCubit.get(context).uploadImage("cam");
-                                // },
-                                // // style: ElevatedButton.styleFrom(
-                                // //   shape: RoundedRectangleBorder(
-                                // //       borderRadius:
-                                // //       BorderRadius.circular(30)),
-                                // ),
-                              },
+                                  await AuthCubit.get(context).image("cam");
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(30)),
+                                ),
+
                               child: DefaultText(
                                 text:"Register",
                                 color: Colors.white,

@@ -1,7 +1,10 @@
+import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:note_app52/model/user_model.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -15,9 +18,11 @@ class AuthCubit extends Cubit<AuthState> {
   FirebaseFirestore store = FirebaseFirestore.instance;
   UserModel userModel = UserModel();
   GoogleSignIn googleSignIn  = GoogleSignIn();
+  FirebaseStorage storage = FirebaseStorage.instance;
+  XFile? userImage;
+  ImagePicker picker = ImagePicker();
 
-
-   registerByEmailAndPassword({required String email,
+     registerByEmailAndPassword({required String email,
      required String password , required  String name })async{
     UserCredential userCredential = await auth.createUserWithEmailAndPassword(
         email: email, password: password);
@@ -25,17 +30,17 @@ class AuthCubit extends Cubit<AuthState> {
      userModel.password =password;
      userModel.name = name;
      userModel.id = userCredential.user!.uid;  // 76hyi
-     //userModel.pic
+    await storage.ref().child('image/').child("${userModel.id}")
+        .putFile(File(userImage!.path));
+     userModel.pic = await storage.ref().child('image/').child("${userModel.id}")
+        .getDownloadURL();
+
      await store.collection("users").doc(userModel.id).set(userModel.toMap());
    }
-
-
-    login({required String email ,required String password})async{
+     login({required String email ,required String password})async{
     await auth.signInWithEmailAndPassword(email: email, password: password);
     }
-
-
-    registerByGoogle()async{
+     registerByGoogle()async{
      GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
      GoogleSignInAuthentication? googleSignInAuthentication =
      await googleSignInAccount!.authentication ;
@@ -53,10 +58,9 @@ class AuthCubit extends Cubit<AuthState> {
 
     }
 
- List users =[];
-   
-    
+     List users =[];
      getAllUser()async{
+      users =[];
     // var userWithMe = await store.collection("users").get();
     // userWithMe.docs.forEach((element) {
     //  users.add(UserModel.fromMap(element.data()));
@@ -68,6 +72,17 @@ class AuthCubit extends Cubit<AuthState> {
        print(users);
     });
      }
-    
 
+      image(String camera)async{
+       if(camera == "cam"){
+      userImage = await picker.pickImage(source: ImageSource.camera);
+      // await storage.ref().child('image/').child("${userModel.id}")
+      //     .putFile(File(userImage!.path));
+      return userImage!.readAsBytes();
+  } else {
+        userImage = await picker.pickImage(source: ImageSource.gallery);
+        await storage.ref().child('image/').child("${userModel.id}")
+            .putFile(File(userImage!.path));
+       }
+       }
 }

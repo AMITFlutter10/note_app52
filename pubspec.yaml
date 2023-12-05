@@ -43,6 +43,8 @@ dependencies:
   sizer: ^2.0.15
   auth_buttons: ^3.0.2
   google_sign_in: ^6.1.6
+  image_picker: ^1.0.4
+  firebase_storage: ^11.5.3
 
 dev_dependencies:
   flutter_test:

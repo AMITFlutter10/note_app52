@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app52/auth/auth_cubit.dart';
+import 'package:note_app52/note/note_cubit.dart';
 import 'package:note_app52/uitlites/app_route.dart';
 import 'package:note_app52/uitlites/route.dart';
 import 'package:sizer/sizer.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_)=>AuthCubit()),
+        BlocProvider(create: (_)=>  NoteCubit()),
       ],
       child: Sizer(
         builder: (BuildContext context, Orientation orientation, DeviceType deviceType) {
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
           ),
           //home: const MyHomePage(),
           onGenerateRoute:onGenerateRoute ,
-          initialRoute:  AppRoute.register,
+          initialRoute:  AppRoute.home,
         ); },
       ),
     );

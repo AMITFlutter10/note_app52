@@ -14,5 +14,9 @@ class GetDataError extends NoteState {}
 
 class UpdateDataSuccess extends NoteState {}
 class UpdateDataError extends NoteState {}
+
+class UpdateDataFavoriteSuccess extends NoteState {}
+class UpdateDataFavoriteError extends NoteState {}
+
 class DeleteDataSuccess extends NoteState {}
 class DeleteDataError extends NoteState {}

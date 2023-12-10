@@ -41,6 +41,7 @@ class AuthCubit extends Cubit<AuthState> {
     await auth.signInWithEmailAndPassword(email: email, password: password);
     }
      registerByGoogle()async{
+      googleSignIn.signOut();
      GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
      GoogleSignInAuthentication? googleSignInAuthentication =
      await googleSignInAccount!.authentication ;
@@ -55,7 +56,6 @@ class AuthCubit extends Cubit<AuthState> {
         userModel.pic = user.user!
             .photoURL ;
         await store.collection("users").doc(userModel.id).set(userModel.toMap());
-
     }
 
      List users =[];

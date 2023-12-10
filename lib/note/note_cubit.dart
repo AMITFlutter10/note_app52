@@ -33,10 +33,11 @@ class NoteCubit extends Cubit<NoteState> {
   List favoriteList = [];
 
   getDataBase() async {
+    noteList.clear();
+    favoriteList.clear();
     emit(LoadingGetData());
     await store.collection("note").get().then((value) {
       for (QueryDocumentSnapshot<Map<String ,dynamic>> element in value.docs) {
-
         noteList.add(element.data());
         if (element["favorite"] == "true") {
           favoriteList.add(element);
@@ -58,6 +59,7 @@ class NoteCubit extends Cubit<NoteState> {
        "title": title,
        "id": id,
      }).then((value) {
+       getDataBase();
        emit(UpdateDataSuccess());
        print("update");
      }).catchError((error){
@@ -80,14 +82,19 @@ class NoteCubit extends Cubit<NoteState> {
     });
   }
   updateFavorite({
-    String? favorite,
+    required  String favorite,
     required int id,
   })async {
     await store.collection("note").doc(id.toString()).update({
-      "favorite":favorite ,
+       "favorite":favorite ,
        "id" : id
     }).then((value) {
+      getDataBase();
+      emit(UpdateDataFavoriteSuccess());
       print("update");
+    }).catchError((error){
+      emit(UpdateDataFavoriteError());
+      print(error);
     });
 
 
@@ -97,6 +104,8 @@ class NoteCubit extends Cubit<NoteState> {
   deleteDataBase({required int id})async{
     await store.collection("note").doc(id.toString()).delete().then((value) {
       emit(DeleteDataSuccess());
+      print("delete");
+      getDataBase();
     }).catchError((error) {
       emit(DeleteDataError());
     });

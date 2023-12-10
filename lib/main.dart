@@ -6,6 +6,7 @@ import 'package:note_app52/auth/auth_cubit.dart';
 import 'package:note_app52/note/note_cubit.dart';
 import 'package:note_app52/uitlites/app_route.dart';
 import 'package:note_app52/uitlites/route.dart';
+import 'package:note_app52/uitlites/theme_app.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
@@ -32,10 +33,7 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context, Orientation orientation, DeviceType deviceType) {
         return MaterialApp(
           title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
+         // theme: isDark? Themes.darkTheme : Themes.lightTheme;
           //home: const MyHomePage(),
           onGenerateRoute:onGenerateRoute ,
           initialRoute:  AppRoute.home,

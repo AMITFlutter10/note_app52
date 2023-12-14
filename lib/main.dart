@@ -4,40 +4,59 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app52/auth/auth_cubit.dart';
 import 'package:note_app52/note/note_cubit.dart';
+import 'package:note_app52/theme/themes_cubit.dart';
 import 'package:note_app52/uitlites/app_route.dart';
 import 'package:note_app52/uitlites/route.dart';
 import 'package:note_app52/uitlites/theme_app.dart';
+import 'package:note_app52/view/screen/setting.dart';
 import 'package:sizer/sizer.dart';
 
+import 'cash_helper.dart';
 import 'firebase_options.dart';
+import 'observer.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
+  Bloc.observer = MyBlocObserver();
+  await CashHelper.init();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_)=>AuthCubit()),
-        BlocProvider(create: (_)=>  NoteCubit()),
+        BlocProvider(create: (_) => AuthCubit()),
+        BlocProvider(create: (_) => NoteCubit()),
+        BlocProvider(create: (_) => ThemesCubit()),
       ],
       child: Sizer(
-        builder: (BuildContext context, Orientation orientation, DeviceType deviceType) {
-        return MaterialApp(
-          title: 'Flutter Demo',
-         // theme: isDark? Themes.darkTheme : Themes.lightTheme;
-          //home: const MyHomePage(),
-          onGenerateRoute:onGenerateRoute ,
-          initialRoute:  AppRoute.home,
-        ); },
+            builder: (BuildContext context, Orientation orientation,
+                DeviceType deviceType) {
+              return  BlocBuilder<ThemesCubit, ThemesState>(
+                builder: (context, state) {
+                  ThemesCubit.get(context).getTheme();
+                  return MaterialApp(
+                title: 'Flutter Demo',
+                theme: ThemesCubit.get(context).isDark
+                    ? Themes.darkTheme
+                    : Themes.lightTheme,
+                home: const SettingsPage(),
+                // onGenerateRoute:onGenerateRoute ,
+                // initialRoute:  AppRoute.home,
+              );
+            },
+          );
+        },
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app52/auth/auth_cubit.dart';
+import 'package:note_app52/cash_helper.dart';
+import 'package:note_app52/uitlites/enums.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../uitlites/app_route.dart';
@@ -15,8 +17,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(text: CashHelper.getString(key: SharedKey.email));
+  TextEditingController passwordController = TextEditingController(text: CashHelper.getString(key: SharedKey.password));
   bool isObscure = false;
   @override
   Widget build(BuildContext context) {
@@ -117,6 +119,9 @@ class LoginScreenState extends State<LoginScreen> {
                                               await cubit.login(
                                                   email: emailController.text,
                                                   password: passwordController.text);
+                                              CashHelper.putString(key: SharedKey.email, value: emailController.text);
+                                              CashHelper.putString(key: SharedKey.password, value: passwordController.text);
+
                                               Navigator.pushNamedAndRemoveUntil(context, AppRoute.home, (route) => false);
                                             },
                                             style: ElevatedButton.styleFrom(

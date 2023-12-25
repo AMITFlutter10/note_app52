@@ -66,7 +66,6 @@ class DefaultFormField extends StatelessWidget {
     this.inputDisabledBorder,
     this.horizontalPadding = 0,
     this.textColor,
-
     // this.labelColor = ,
     this.contentPadding,
     this.containerAlignment,

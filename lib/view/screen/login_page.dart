@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app52/auth/auth_cubit.dart';
 import 'package:note_app52/cash_helper.dart';
-import 'package:note_app52/uitlites/enums.dart';
+import 'package:note_app52/utilities/enums.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../uitlites/app_route.dart';
+import '../../utilities/app_route.dart';
 import '../widgets/default_form_field.dart';
 import '../widgets/default_text.dart';
 
@@ -38,7 +38,7 @@ class LoginScreenState extends State<LoginScreen> {
                               Container(
                                 height: h * 0.52,
                                 decoration: const BoxDecoration(
-                                  color: Colors.red,
+                                  color: Colors.purple,
                                   borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(130),
                                     topRight: Radius.circular(150),
@@ -49,16 +49,16 @@ class LoginScreenState extends State<LoginScreen> {
                                 padding: const EdgeInsets.all(30.0),
                                 child: DefaultText(
                                  text: "Login",
-                                    fontSize: 20.sp,
+                                    fontSize: 30.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 120, left: 60),
+                                padding:  EdgeInsets.only(top: 15.h,left: 6.h),
                                 child: Center(
                                   child: Container(
-                                    height: 250,
-                                    width: 270,
+                                    height: 35.h,
+                                    width: 85.w,
                                     decoration: BoxDecoration(
                                       boxShadow: [
                                         BoxShadow(
@@ -80,6 +80,11 @@ class LoginScreenState extends State<LoginScreen> {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           DefaultFormField(
+                                            height: 7.h,
+                                            inputBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(20),
+                                              borderSide:const  BorderSide(color: Colors.grey)
+                                            ),
                                             hintText: "email",
                                             keyboardType: TextInputType.emailAddress,
                                             controller: emailController,
@@ -101,7 +106,12 @@ class LoginScreenState extends State<LoginScreen> {
                                             height: 3.h,
                                           ),
                                           DefaultFormField(
-                                            hintText:  " password",
+                                              height: 7.h,
+                                              inputBorder: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.circular(20),
+                                                  borderSide:const  BorderSide(color: Colors.grey)
+                                              ),
+                                            hintText:  "Password",
                                               keyboardType: TextInputType.visiblePassword,
                                               controller: passwordController,
                                               validator: (value) {
@@ -112,7 +122,7 @@ class LoginScreenState extends State<LoginScreen> {
                                                 }
                                               }),
                                           SizedBox(
-                                            height: 4.h,
+                                            height: 3.h,
                                           ),
                                           ElevatedButton(
                                             onPressed: () async {
@@ -126,7 +136,7 @@ class LoginScreenState extends State<LoginScreen> {
                                             },
                                             style: ElevatedButton.styleFrom(
                                                 shape:const StadiumBorder(),
-                                                minimumSize: const Size(40, 40)),
+                                                minimumSize: const Size(50, 40)),
                                             child: DefaultText(
                                               text: "Login",
                                               fontSize: 10.sp,
@@ -141,15 +151,15 @@ class LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           SizedBox(
-                            height: 10.h,
+                            height: 6.h,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
                                 DefaultText(
-                                  text: " create new account",
-                                fontSize: 8.sp,
+                                  text: "Create new account",
+                                fontSize: 11.sp,
                                 ),
                                 InkWell(
                                   onTap: () {
@@ -157,7 +167,8 @@ class LoginScreenState extends State<LoginScreen> {
                                   child: DefaultText(
                                     text: "Register",
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 9.sp,
+                                        fontSize: 13.sp,
+                                      color: Colors.purple,
                                  ),),
                               ],
                             ),

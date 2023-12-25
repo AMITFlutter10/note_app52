@@ -5,12 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app52/auth/auth_cubit.dart';
 import 'package:note_app52/note/note_cubit.dart';
 import 'package:note_app52/theme/themes_cubit.dart';
-import 'package:note_app52/uitlites/app_route.dart';
-import 'package:note_app52/uitlites/route.dart';
-import 'package:note_app52/uitlites/theme_app.dart';
+import 'package:note_app52/utilities/app_route.dart';
+import 'package:note_app52/utilities/route.dart';
+import 'package:note_app52/utilities/theme_app.dart';
 import 'package:note_app52/view/screen/setting.dart';
 import 'package:sizer/sizer.dart';
-
 import 'cash_helper.dart';
 import 'firebase_options.dart';
 import 'observer.dart';
@@ -40,19 +39,19 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (_) => ThemesCubit()),
       ],
       child: Sizer(
-            builder: (BuildContext context, Orientation orientation,
-                DeviceType deviceType) {
-              return  BlocBuilder<ThemesCubit, ThemesState>(
-                builder: (context, state) {
-                  ThemesCubit.get(context).getTheme();
-                  return MaterialApp(
+        builder: (BuildContext context, Orientation orientation,
+            DeviceType deviceType) {
+          return BlocBuilder<ThemesCubit, ThemesState>(
+            builder: (context, state) {
+              ThemesCubit.get(context).getTheme();
+              return MaterialApp(
                 title: 'Flutter Demo',
                 theme: ThemesCubit.get(context).isDark
                     ? Themes.darkTheme
                     : Themes.lightTheme,
-                home: const SettingsPage(),
-                // onGenerateRoute:onGenerateRoute ,
-                // initialRoute:  AppRoute.home,
+                // home: const SettingsPage(),
+                onGenerateRoute:onGenerateRoute ,
+                initialRoute:  AppRoute.splash,
               );
             },
           );

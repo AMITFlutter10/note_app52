@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:sizer/sizer.dart';
-
 import '../../auth/auth_cubit.dart';
-import '../../uitlites/app_route.dart';
+import '../../utilities/app_route.dart';
 import '../widgets/default_form_field.dart';
 import '../widgets/default_text.dart';
 
@@ -65,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         children: [
                           DefaultText(
                            text: "Register",
-                                fontSize: 40,
+                                fontSize: 30.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black
                           ),
@@ -74,6 +73,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             height: 3.h,
                           ),
                           DefaultFormField(
+                              height: 7.h,
+                              inputBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide:const  BorderSide(color: Colors.grey)
+                              ),
                               labelText: "userName",
                               controller: nameController,
                               keyboardType: TextInputType.name,
@@ -88,6 +92,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             height: 1.h,
                           ),
                           DefaultFormField(
+                              height: 7.h,
+                              inputBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide:const  BorderSide(color: Colors.grey)
+                              ),
                               labelText: "email",
                               controller: emailController,
                               keyboardType: TextInputType.emailAddress,
@@ -108,6 +117,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             height: 2.h,
                           ),
                           DefaultFormField(
+                            height: 7.h,
+                            inputBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:const  BorderSide(color: Colors.grey)
+                            ),
                             labelText: "password",
                             keyboardType: TextInputType.text,
                             controller: passwordController,
@@ -142,7 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child:
                               DefaultText(
                                 text:"Register",
-                              fontSize: 10.sp,
+                              fontSize: 15.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -189,7 +203,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child: DefaultText(
                                 text:"Register",
                                 color: Colors.white,
-                                fontSize: 8.sp,
+                                fontSize: 12.sp,
 
                               ),
                           )
@@ -203,7 +217,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Row(
                     children: [
                       DefaultText(
-                       text: "have_account",
+                       text: "Have account",
                        color: Colors.white,
                         fontSize: 10.sp,
                       ),
@@ -214,10 +228,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               context,"login");
                         },
                         child: DefaultText(
-                          text: "Login",
+                          text: "  Login",
                               fontWeight: FontWeight.bold,
-                              fontSize: 10.sp,
-                              color: Colors.white
+                              fontSize: 15.sp,
+                              color: Colors.purple
                           ),
                         ),
                     ],

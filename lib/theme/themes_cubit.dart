@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:note_app52/uitlites/enums.dart';
+import 'package:note_app52/utilities/enums.dart';
 
 import '../cash_helper.dart';
 

@@ -3,11 +3,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:note_app52/cash_helper.dart';
-import 'package:note_app52/uitlites/colors.dart';
-import 'package:note_app52/uitlites/enums.dart';
+import 'package:note_app52/utilities/colors.dart';
+import 'package:note_app52/utilities/enums.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../uitlites/app_route.dart';
+import '../../utilities/app_route.dart';
 import '../widgets/default_text.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -67,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen>
               FadeTransition(
                 opacity: _animation,
                 child: Image.asset(
-                  'assets/images/1.PNG',
+                  'assets/images/pic1.jpg',
                   height: 30.h,
                   width: 70.w,
                 ),

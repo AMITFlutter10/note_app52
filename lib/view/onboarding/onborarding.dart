@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app52/cash_helper.dart';
-import 'package:note_app52/uitlites/enums.dart';
+import 'package:note_app52/utilities/enums.dart';
 import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

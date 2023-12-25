@@ -20,7 +20,10 @@ class HomePage extends StatelessWidget {
               children: [
               DefaultFormField(controller: messageController, keyboardType: TextInputType.text),
               SizedBox(height: 2.h,),
-              DefaultFormField(controller: titleController, keyboardType:TextInputType.text),
+              DefaultFormField(
+                  controller: titleController,
+                  keyboardType:TextInputType.text
+              ),
               SizedBox(height: 2.h,),
               ElevatedButton(onPressed: (){
                 NoteCubit.get(context).insertDataBase(message: messageController.text,

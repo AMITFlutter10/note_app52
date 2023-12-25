@@ -15,7 +15,7 @@ class DefaultText extends StatelessWidget {
       {Key? key,
         required this.text,
         this.maxLines,
-         this.color = Colors.black,
+         this.color = Colors.white,
         this.textAlign,
         this.textScaleFactor,
         this.fontWeight = FontWeight.normal,

@@ -29,7 +29,7 @@ class EditNote extends StatelessWidget {
               keyboardType: TextInputType.text,
               inputBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Colors.white24)
+                  borderSide: const BorderSide(color: Colors.white24)
               ),
 
 
@@ -38,7 +38,7 @@ class EditNote extends StatelessWidget {
             DefaultFormField(
               inputBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide(color: Colors.white24),),
+                borderSide: const BorderSide(color: Colors.white24),),
               controller: messageController, keyboardType:TextInputType.text,),
  Row(
    children: [

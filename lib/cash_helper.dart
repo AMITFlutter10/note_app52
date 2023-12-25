@@ -1,4 +1,4 @@
-import 'package:note_app52/uitlites/enums.dart';
+import 'package:note_app52/utilities/enums.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 

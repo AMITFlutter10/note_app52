@@ -10,7 +10,7 @@ class OnBoardingModel{
 
 // dummy data
 List<OnBoardingModel> itemOnBoard=[
-  OnBoardingModel(image: "assets/images/1.PNG", disc: "HI :) "),
-  OnBoardingModel(image: "assets/images/2.png", disc: "Hello :) "),
+  OnBoardingModel(image: "assets/images/pic1.jpg", disc: "HI :) "),
+  OnBoardingModel(image: "assets/images/pic1.jpg", disc: "Hello :) "),
 
 ];
